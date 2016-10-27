@@ -14,14 +14,16 @@ body {
   top: 0;
   left: 0;
   height:100%;
-  width:100%;
-  color:red;
-  
+  width:100%;  
 }
+
+
 h4.team{ 
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
-  font-size: 80px;
+  font-size: 70px;
+  color: white;
+  line-height: 100%;
 }
 
 h5.owner{ 
@@ -39,12 +41,71 @@ h5.owner{
 .teamSection { 
     height: 100vh;
     overflow: hidden;
+    padding-top: 25vh;
+    padding-right: 70px;
+    padding-left: 70px;
  }
 
 .teamLogo{
   width: 40%;
 }
 
+
+/*BlAZERS STYLES*/
+.blazers.sub { 
+  color: #e13a3e;
+ }
+.blazers.background { 
+  background-color: black;
+}
+
+/*Clippers STYLES*/
+.clippers.sub { 
+  color: #0058a9;
+ }
+.clippers.background { 
+  background-color: grey;
+}
+
+/*Hornets STYLES*/
+.hornets.sub { 
+  color: #00758D;
+ }
+.hornets.background { 
+  background-color: black;
+}
+
+/*heat STYLES*/
+.heat.sub { 
+  color: #f59814;
+ }
+.heat.background { 
+  background-color: grey;
+}
+
+/*bucks STYLES*/
+.bucks.sub { 
+  color: #dfcaa2;
+ }
+.bucks.background { 
+  background-color: #2b5235;
+}
+
+/*Nicks STYLES*/
+.nicks.sub { 
+  color: #FF671B;
+ }
+.nicks.background { 
+  background-color: grey;
+}
+
+/*grizzlies STYLES*/
+.grizzlies.sub { 
+  color: #FF671B;
+ }
+.grizzlies.background { 
+  background-color: grey;
+}
 
 
 
@@ -86,6 +147,8 @@ h5.owner{
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0;
+
 }
 .jumbotron .btn {
   font-size: 21px;

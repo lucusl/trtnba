@@ -1,9 +1,35 @@
-<div class="jumbotron col-md-6 teamSection">
-  <h1>'{{main.data.Games[0]}}</h1>
-  </div>
-<div class="jumbotron col-md-6 teamSection">
-    <img class="teamLogo" src="images/gs.png">
-   <h4 class="team ">{{main.data.Games[0].Team1.TeamFullName}}</h4>
-    <h5 class="owner">Team owner : {{main.data.Games[0].Team1.Owners[0].DisplayName}}</h5>
 
-</div>
+
+<div id='slide-wrapper' class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#slide-wrapper" data-slide-to="0" class="active"></li>
+    <li data-target="#slide-wrapper" data-slide-to="1"></li>
+  </ol>
+
+<div class="carousel-inner" role="listbox">
+ 
+  <!--- ONLY ONE GAME SLIDE-->
+  <div class="item active">
+        <div class="jumbotron col-md-6 teamSection background {{main.teamOneStyle.style}}">
+         <img class="teamLogo" src={{main.teamOneStyle.logo}}>
+           <h4 class="team ">{{main.data.Games[0].Team1.TeamFullName}}</h4>
+            <h5 class="owner {{main.teamOneStyle.style}} sub ">{{main.team1ownerDetails.intro}} : {{main.team1ownerDetails.names}}</h5>
+        </div>
+
+
+        <div class="jumbotron col-md-6 teamSection background {{main.teamTwoStyle.style}}">
+            <img class="teamLogo" src={{main.teamTwoStyle.logo}}>
+           <h4 class="team ">{{main.data.Games[0].Team2.TeamFullName}}</h4>
+            <h5 class="owner {{main.teamTwoStyle.style}} sub ">{{main.team2ownerDetails.intro}} : {{main.team2ownerDetails.names}}</h5>
+        </div>
+  </div>
+
+  <div class="item">
+     <p>TEST</p>
+ </div>
+
+
+
+ </div> 
+</div>  

@@ -11,9 +11,20 @@ angular.module('trtNbaApp')
   .service('data', function ($http) {
   	var model = this,
   		URLS = {
-  			FETCH: 'http://192.168.111.98/trt/api/nba/301'
+  			FETCH: 'http://qa.xchangefusion.com/api/nba/'
   		},
   		theData;
+
+ 	function getDay() {
+  		var timestmp = 
+  		     new Date().setFullYear(new Date().getFullYear(), 0, 1);
+  		var yearFirstDay = Math.floor(timestmp / 86400000);
+  		var today = Math.ceil((new Date().getTime()) / 86400000);
+  		var dayOfYear = today - yearFirstDay;
+
+    console.log(dayOfYear)
+  		return dayOfYear;
+  	}
 
   	function extract(result){
   		return result.data;
@@ -21,13 +32,14 @@ angular.module('trtNbaApp')
 
   	function cacheData(result) {
   		theData = extract(result);
-  		console.log(result)
+  		console.log(result);
   		return theData;
   	}
 
   	model.getData = function(){
-  		return $http.get(URLS.FETCH, config).then(cacheData);
+  		return $http.get(URLS.FETCH + getDay()).then(cacheData);
   	};
+
 
 
   });
