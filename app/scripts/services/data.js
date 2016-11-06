@@ -11,10 +11,12 @@ angular.module('trtNbaApp')
   .service('data', function ($http) {
   	var model = this,
   		URLS = {
-  			FETCH: 'http://qa.xchangefusion.com/api/nba/'
+  			FETCH: 'data/data.json'//'http://qa.xchangefusion.com/api/nba/'
   		},
   		theData;
 
+
+ // get todats date in required format 
  	function getDay() {
   		var timestmp = 
   		     new Date().setFullYear(new Date().getFullYear(), 0, 1);
@@ -37,7 +39,7 @@ angular.module('trtNbaApp')
   	}
 
   	model.getData = function(){
-  		return $http.get(URLS.FETCH + getDay()).then(cacheData);
+  		return $http.get(URLS.FETCH /*+ getDay()*/).then(/*success*/ cacheData, /*error*/ function(result){ console.log(result.status); theData = result.status; return theData });
   	};
 
 

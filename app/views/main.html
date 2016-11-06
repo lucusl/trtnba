@@ -7,21 +7,31 @@
     <li data-target="#slide-wrapper" data-slide-to="1"></li>
   </ol>
 
-<div class="carousel-inner" role="listbox">
- 
+
+  <!---ONLY SHOWS IF THE API IS BROKEN -->
+  <div class="jumbotron col-md-12 teamSection background" ng-if ="main.gameTime == false && main.apiError" >
+           <h4 class="team ">DAVE PLEASE FIX THE API</h4>
+  </div>
+
+
+  <!---ONLY SHOWS IF THERE IS NO GAME TODAY -->
+  <div class="jumbotron col-md-12 teamSection background" ng-if ="main.gameTime == false && main.apiError === false" >
+           <h4 class="team ">NO GAME TODAY</h4>
+  </div>
+
+<div class="carousel-inner" role="listbox" ng-if ="main.gameTime">
   <!--- ONLY ONE GAME SLIDE-->
   <div class="item active">
-        <div class="jumbotron col-md-6 teamSection background {{main.teamOneStyle.style}}">
+      <div class="jumbotron col-md-6 teamSection background {{main.teamOneStyle.style}}">
          <img class="teamLogo" src={{main.teamOneStyle.logo}}>
-           <h4 class="team ">{{main.data.Games[0].Team1.TeamFullName}}</h4>
-            <h5 class="owner {{main.teamOneStyle.style}} sub ">{{main.team1ownerDetails.intro}} : {{main.team1ownerDetails.names}}</h5>
+           <h4 class="team">{{main.team1.name}}</h4>
+            <h5 class="owner {{main.teamOneStyle.style}} sub ">{{main.team1.owner.details.intro}} : {{main.team1.owner.details.name}}</h5>
         </div>
-
 
         <div class="jumbotron col-md-6 teamSection background {{main.teamTwoStyle.style}}">
             <img class="teamLogo" src={{main.teamTwoStyle.logo}}>
-           <h4 class="team ">{{main.data.Games[0].Team2.TeamFullName}}</h4>
-            <h5 class="owner {{main.teamTwoStyle.style}} sub ">{{main.team2ownerDetails.intro}} : {{main.team2ownerDetails.names}}</h5>
+           <h4 class="team ">{{main.team2.name}}</h4>
+            <h5 class="owner {{main.teamTwoStyle.style}} sub ">{{main.team2.owner.details.intro}} : {{main.team2.owner.details.name}}</h5>
         </div>
   </div>
 

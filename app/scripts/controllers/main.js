@@ -9,54 +9,64 @@
  */
 angular.module('trtNbaApp')
   .controller('MainCtrl', function (data) {
+    
+  //sets the controller alias 
     var main = this;
-    main.data = [];
+        main.data ={};
+        main.data.result = 'none yet'
+        main.gameTime =[];
+        main.apiError = [];
+        main.teamOneStyle = [];
+        main.teamTwoStyle = [];
+        main.apiError = [];
 
-    main.teamOneStyle;
-    main.teamTwoStyle;
+  //Team 1
+    main.team1 = {};
+    main.team1.name = 'Team 1 not set';
+    main.team1.owner = {};
+    main.team1.owner.name = 'owner name not set';
+	  main.team1.owner.details ='owner details not set';
+	
+  //Team 2
+    main.team2 = {};
+    main.team2.name = 'Team 2 not set';
+    main.team2.owner = {};
+    main.team2.owner.name = 'owner name not set';
+    main.team2.owner.details = {};
+  
 
-    //Team 1
-    main.Team1;
-    main.team1owner;
-	main.team1ownerDetails;
-	//Team 2
-    main.Team2;
-    main.team2owner;
-	main.team2ownerDetails;
 
-  main.getData
-    data.getData()
+  // Calls the service and deals with the data 
+  data.getData()
     	.then(function(result){
-      		main.data = JSON.parse(result) ; 
+      	main.data = result; 
     		console.log(main.data);
+
     		gameDay(main.data);
+
+    		main.team1.name = getTeam1();
+    		main.teamOneStyle = setTeam(main.team1.name, 1);
     		console.log(getTeam1())
 
-    		main.team1 = getTeam1();
+        main.team1.owner.name = getOwner1();
+        main.team1.owner.details  = getOwnerDeets(main.team1.owner.name);
 
-    		main.teamOneStyle = setTeam(main.team1, 1);
-    		console.log(getTeam1())
-
-    		main.team2 = getTeam2();
-
-    		main.teamTwoStyle = setTeam(main.team2, 2);
+    		main.team2.name = getTeam2();
+    		main.teamTwoStyle = setTeam(main.team2.name, 2);
     		console.log(main.teamTwoStyle)
 
-    		main.team1owner = getOwner1();
-    		main.team1ownerDetails = getOwnerDeets(main.team1owner);
-
-    		main.team2owner = getOwner2();
-    		main.team2ownerDetails = getOwnerDeets(main.team2owner);
+    		main.team2.owner.name = getOwner2();
+    		main.team2.owner.details = getOwnerDeets(main.team2.owner.name);
 
     });
 
+    console.log(main.data);
    	function getTeam1() {
   		return main.data.Games[0].Team1.TeamFullName
   	}
-	function getTeam2() {
+	  function getTeam2() {
   		return main.data.Games[0].Team2.TeamFullName
   	}
-
   	function getOwner1() {
   		return main.data.Games[0].Team1.Owners
   	}
@@ -65,26 +75,35 @@ angular.module('trtNbaApp')
   	}
 
   	function getOwnerDeets(owner) {
-
   		if (owner.length === 2) {
-
-             return {names: owner[0].DisplayName +' & '+ owner[1].DisplayName, intro:'Team owners'}
-
+         return {name: owner[0].DisplayName +' & '+ owner[1].DisplayName, intro:'Team owners'}
   		} else {
-  		    
-             return {names: owner[0].DisplayName, intro:'Team owner'}
-
+         return {name: owner[0].DisplayName, intro:'Team owner'}
   		}
   	}
 
+
+    // Checks to see if there is game data for the day & if it is due to API down 
   	function gameDay(gameData){
-  		if (gameDay === null){
+  		if (gameData === null){
   			console.log('no games today');
-  		} else {
-  		console.log('its game day');
-  	}
+        main.gameTime = false;
+        main.apiError = false;
+
+  		} else if(gameData === 404){
+  		  console.log('API fukt');
+        main.gameTime = false;
+        main.apiError = true;
+
+  	  } else {
+        console.log('game on bitchez');
+        main.gameTime = true;
+        main.apiError = false;
+
+    }
   };
 
+    // Sets the style and team logo based on team name data  
   	function setTeam(TeamName, TeamID){
   		switch(TeamName)
   		{
@@ -99,11 +118,9 @@ angular.module('trtNbaApp')
   			break;
   			case "Milwaukee Bucks":
   				return {style:"bucks", logo:"images/mil.png"}; 
-
   			break;
   			case "Miami Heat":
   				return {style:"heat", logo:"images/mh.png"}; 
-
   			break;
   			case "Brooklyn Nets":
   				return {style:"nets", logo:"images/bn.png"}; 
@@ -114,11 +131,14 @@ angular.module('trtNbaApp')
   			case "Memphis Grizzlies":
   				return {style:"grizzlies", logo:"images/griz.png"}; 
   			break;
+          break;
+        case "Golden State Warriors":
+          return {style:"Warriors", logo:"images/gs.png"}; 
+        break;
   			default: 
   		}
 
   	}
 
-   
 
 });
