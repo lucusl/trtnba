@@ -9,9 +9,26 @@
  */
 angular.module('trtNbaApp')
   .controller('MainCtrl', function (data) {
+
+
     
   //sets the controller alias 
     var main = this;
+
+  function Team(teamName,gameId,teamNum,ownerName){
+     this.name = teamName;
+     this.gameId = gameId; // 0 - 1 
+     this.teamId = 'team'+teamNum;
+     this.teamStyle = [];
+     this.owner = {};
+     this.owner.name = ownerName;
+     this.owner.details = {};
+   }
+
+   main.teamOne = new Team('not set','0');
+   console.log(main.teamTest);
+
+   
         main.data ={};
         main.data.result = 'none yet'
         main.gameTime =[];
@@ -61,6 +78,14 @@ angular.module('trtNbaApp')
     });
 
     console.log(main.data);
+
+    Team.prototype.getTeam = function(){
+      var a = this.gameId
+      var b = this.teamId
+
+      return main.data.Games.[a].b.TeamFullName
+    }
+
    	function getTeam1() {
   		return main.data.Games[0].Team1.TeamFullName
   	}
