@@ -37,6 +37,13 @@ h5.owner{
   transform: translateY(-50%);
 }
 
+.bg-main{
+ background: url(../images/bgimage1.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 .teamSection { 
     height: 100vh;
@@ -49,14 +56,20 @@ h5.owner{
 .teamLogo{
   width: 40%;
 }
-
+/*BlAZERS STYLES*/
+.warriors.sub { 
+  color: #ffb924;
+ }
+.warriors.background { 
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
 /*BlAZERS STYLES*/
 .blazers.sub { 
   color: #e13a3e;
  }
 .blazers.background { 
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /*Clippers STYLES*/
@@ -107,7 +120,13 @@ h5.owner{
   background-color: grey;
 }
 
+.full-screen{
+  width: 100vw;
+  height: 100vh
+}
 
+.no-game{
+}
 
 
 .font {font-family: 'Oswald', sans-serif}
