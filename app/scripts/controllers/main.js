@@ -87,13 +87,14 @@ angular.module('trtNbaApp')
       console.log(game);
       this.name = game[b].TeamFullName;
       this.owner = game[b].Owners;
+      this.getOwner();
 	}
 
 	 Team.prototype.getOwner = function(){
 	      if (this.owner.length === 2){
 	      	   return {this.owner.name: this.owner[0].DisplayName +' & '+ this.owner[1].DisplayName, this.owner.intro:'Team owners'}
   		} else {
-               return {name: owner[0].DisplayName, intro:'Team owner'}
+               return {this.owner.name: this.owner[0].DisplayName, intro:'Team owner'}
 	      }
 	}
 
