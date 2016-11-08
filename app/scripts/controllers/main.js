@@ -18,16 +18,15 @@ angular.module('trtNbaApp')
   function Team(teamName,gameId,teamNum,ownerName){
      this.name = teamName;
      this.gameId = gameId; // 0 - 1 
-     this.teamId = 'team'+teamNum;
+     this.teamId = 'Team' + teamNum; //
      this.teamStyle = [];
      this.owner = {};
      this.owner.name = ownerName;
      this.owner.details = {};
    }
 
-   main.teamOne = new Team('not set','0');
-   console.log(main.teamTest);
-
+   main.teamOne = new Team('not set','0', '1');
+   console.log(main.teamOne);
    
         main.data ={};
         main.data.result = 'none yet'
@@ -42,7 +41,7 @@ angular.module('trtNbaApp')
     main.team1.name = 'Team 1 not set';
     main.team1.owner = {};
     main.team1.owner.name = 'owner name not set';
-	  main.team1.owner.details ='owner details not set';
+	main.team1.owner.details ='owner details not set';
 	
   //Team 2
     main.team2 = {};
@@ -56,14 +55,16 @@ angular.module('trtNbaApp')
   // Calls the service and deals with the data 
   data.getData()
     	.then(function(result){
-      	main.data = result; 
+      		main.data = JSON.parse(result) ; 
     		console.log(main.data);
-
     		gameDay(main.data);
+    		gameNum(main.data);
+    		main.teamOne.getTeam(main.data);
+
 
     		main.team1.name = getTeam1();
     		main.teamOneStyle = setTeam(main.team1.name, 1);
-    		console.log(getTeam1())
+     		console.log(main.teamOne.getTeam());
 
         main.team1.owner.name = getOwner1();
         main.team1.owner.details  = getOwnerDeets(main.team1.owner.name);
@@ -79,12 +80,33 @@ angular.module('trtNbaApp')
 
     console.log(main.data);
 
-    Team.prototype.getTeam = function(){
-      var a = this.gameId
-      var b = this.teamId
+	 Team.prototype.getTeam = function(gameData){
+      var a = this.gameId;
+      var b = this.teamId;
+      var game = gameData.Games[a];
+      console.log(game);
+      this.name = game[b].TeamFullName;
+      this.owner = game[b].Owners;
+	}
 
-      return main.data.Games.[a].b.TeamFullName
-    }
+	 Team.prototype.getOwner = function(){
+	      if (this.owner.length === 2){
+	      	   return {this.owner.name: this.owner[0].DisplayName +' & '+ this.owner[1].DisplayName, this.owner.intro:'Team owners'}
+  		} else {
+               return {name: owner[0].DisplayName, intro:'Team owner'}
+	      }
+	}
+
+	function gameNum(result){
+		if (main.data.Games.length === 1) {
+			console.log('only one game today')
+		}else if(main.data.Games.length === 2){
+			console.log('2 games today')
+		}else{
+			console.log('probs no game')
+		}
+
+	}
 
    	function getTeam1() {
   		return main.data.Games[0].Team1.TeamFullName
@@ -126,7 +148,7 @@ angular.module('trtNbaApp')
         main.apiError = false;
 
     }
-  };
+  }
 
     // Sets the style and team logo based on team name data  
   	function setTeam(TeamName, TeamID){
@@ -157,9 +179,9 @@ angular.module('trtNbaApp')
   				return {style:"grizzlies", logo:"images/griz.png"}; 
   			break;
           break;
-        case "Golden State Warriors":
-          return {style:"Warriors", logo:"images/gs.png"}; 
-        break;
+     	   case "Golden State Warriors":
+     	     return {style:"Warriors", logo:"images/gs.png"}; 
+     	   break;
   			default: 
   		}
 

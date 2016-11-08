@@ -21,7 +21,7 @@
 
 <div class="carousel-inner" role="listbox" ng-if ="main.gameTime">
   <!--- ONLY ONE GAME SLIDE-->
-  <div class="item active">
+  <div class="item active" ng-class="{active: main.data.Games.length === 1}">
       <div class="jumbotron col-md-6 teamSection background {{main.teamOneStyle.style}}">
          <img class="teamLogo" src={{main.teamOneStyle.logo}}>
            <h4 class="team">{{main.team1.name}}</h4>
@@ -35,7 +35,7 @@
         </div>
   </div>
 
-  <div class="item">
+  <div class="item" ng-if ="main.data.Games.length === 2">
      <p>TEST</p>
  </div>
 

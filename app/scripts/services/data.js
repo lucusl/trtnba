@@ -11,7 +11,7 @@ angular.module('trtNbaApp')
   .service('data', function ($http) {
   	var model = this,
   		URLS = {
-  			FETCH: 'data/data.json'//'http://qa.xchangefusion.com/api/nba/'
+  			FETCH: 'http://integrations.xchangefusion.com/api/nba/'
   		},
   		theData;
 
@@ -25,7 +25,7 @@ angular.module('trtNbaApp')
   		var dayOfYear = today - yearFirstDay;
 
     console.log(dayOfYear)
-  		return dayOfYear;
+  		return dayOfYear + 2;
   	}
 
   	function extract(result){
@@ -39,7 +39,7 @@ angular.module('trtNbaApp')
   	}
 
   	model.getData = function(){
-  		return $http.get(URLS.FETCH /*+ getDay()*/).then(/*success*/ cacheData, /*error*/ function(result){ console.log(result.status); theData = result.status; return theData });
+  		return $http.get(URLS.FETCH + getDay()).then(/*success*/ cacheData, /*error*/ function(result){ console.log(result.status); theData = result.status; return theData });
   	};
 
 
