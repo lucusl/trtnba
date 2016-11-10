@@ -1,45 +1,60 @@
-<div class="vs"><h4>VS</h4></div>
-
-<div id='slide-wrapper' class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#slide-wrapper" data-slide-to="0" class="active"></li>
-    <li data-target="#slide-wrapper" data-slide-to="1"></li>
-  </ol>
 
 
   <!---ONLY SHOWS IF THE API IS BROKEN -->
-  <div class="jumbotron col-md-12 teamSection background" ng-if ="main.gameTime == false && main.apiError" >
-           <h4 class="team ">DAVE PLEASE FIX THE API</h4>
+  <div class="bg-main bg-techprob" ng-if ="main.gameTime == false && main.apiError" >
+    <div class="jumbotron col-md-12 teamSection background" >
+             <h4 class="team ">DAVE PLEASE FIX THE API</h4>
+    </div>
   </div>
 
 
   <!---ONLY SHOWS IF THERE IS NO GAME TODAY -->
-  <div class="jumbotron col-md-12 teamSection background" ng-if ="main.gameTime == false && main.apiError === false" >
-           <h4 class="team ">NO GAME TODAY</h4>
-  </div>
+  <div class="bg-main bg-nogame" ng-if ="main.gameTime == false && main.apiError === false" >
+    <div class="jumbotron col-md-12 teamSection background" >
+             <h4 class="team ">NO GAME TODAY</h4>
+             <h5 class="owner">Hold onto your coffee money</h5>
+    </div>
+  </div>  
+  
+<div id='slide-wrapper' class="carousel slide" data-ride="carousel" data-interval = "6000">
+  <!-- Indicators 
+  <ol class="carousel-indicators">
+    <li data-target="#slide-wrapper" data-slide-to="0" class="active"></li>
+    <li data-target="#slide-wrapper" data-slide-to="1"></li>
+  </ol>-->
+
+<div class="vs" ng-if ="main.gameTime == true"><h4>VS</h4></div>
+
+
 
 <div class="carousel-inner" role="listbox" ng-if ="main.gameTime">
   <!--- ONLY ONE GAME SLIDE-->
-  <div class="item active" ng-class="{active: main.data.Games.length === 1}">
-      <div class="jumbotron col-md-6 teamSection background {{main.teamOneStyle.style}}">
-         <img class="teamLogo" src={{main.teamOneStyle.logo}}>
-           <h4 class="team">{{main.team1.name}}</h4>
-            <h5 class="owner {{main.teamOneStyle.style}} sub ">{{main.team1.owner.details.intro}} : {{main.team1.owner.details.name}}</h5>
-        </div>
+    <div class="item active">
+        <div class="jumbotron col-md-6 teamSection background {{main.teamOne.teamStyle.style}}">
+           <img class="teamLogo" src={{main.teamOne.teamStyle.logo}}>
+             <h4 class="team">{{main.teamOne.name}}</h4>
+              <h5 class="owner {{main.teamOne.teamStyle.style}} sub ">{{main.teamOne.owner.intro}} : {{main.teamOne.owner.name}}</h5>
+          </div>
 
-        <div class="jumbotron col-md-6 teamSection background {{main.teamTwoStyle.style}}">
-            <img class="teamLogo" src={{main.teamTwoStyle.logo}}>
-           <h4 class="team ">{{main.team2.name}}</h4>
-            <h5 class="owner {{main.teamTwoStyle.style}} sub ">{{main.team2.owner.details.intro}} : {{main.team2.owner.details.name}}</h5>
-        </div>
-  </div>
+          <div class="jumbotron col-md-6 teamSection background {{main.teamTwo.teamStyle.style}}">
+           <img class="teamLogo" src={{main.teamTwo.teamStyle.logo}}>
+             <h4 class="team">{{main.teamTwo.name}}</h4>
+              <h5 class="owner {{main.teamTwo.teamStyle.style}} sub ">{{main.teamTwo.owner.intro}} : {{main.teamTwo.owner.name}}</h5>
+          </div>
+    </div>
 
-  <div class="item" ng-if ="main.data.Games.length === 2">
-     <p>TEST</p>
- </div>
+    <div class="item" ng-if ="main.data.Games.length === 2">
+       <div class="jumbotron col-md-6 teamSection background {{main.teamThree.teamStyle.style}}">
+           <img class="teamLogo" src={{main.teamThree.teamStyle.logo}}>
+             <h4 class="team">{{main.teamThree.name}}</h4>
+              <h5 class="owner {{main.teamThree.teamStyle.style}} sub ">{{main.teamThree.owner.intro}} : {{main.teamThree.owner.name}}</h5>
+          </div>
 
-
-
+          <div class="jumbotron col-md-6 teamSection background {{main.teamFour.teamStyle.style}}">
+           <img class="teamLogo" src={{main.teamFour.teamStyle.logo}}>
+             <h4 class="team">{{main.teamFour.name}}</h4>
+              <h5 class="owner {{main.teamFour.teamStyle.style}} sub ">{{main.teamFour.owner.intro}} : {{main.teamFour.owner.name}}</h5>
+          </div>
+   </div>
  </div> 
 </div>  

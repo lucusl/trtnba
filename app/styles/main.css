@@ -17,7 +17,17 @@ body {
   width:100%;  
 }
 
+h4 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 50px;
+  color: white;
+}
 
+.vs h4{
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
 h4.team{ 
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
@@ -38,12 +48,22 @@ h5.owner{
 }
 
 .bg-main{
- background: url(../images/bgimage1.jpg) no-repeat center center fixed; 
+ height: 100vh;
+ width: 100vw;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+
+.bg-nogame{
+   background: url(../images/bgimage1.jpg) no-repeat center center fixed; 
+ }
+
+ .bg-techprob{
+   background: url(../images/tech-bg.jpg) no-repeat center center fixed; 
+ }
+
 
 .teamSection { 
     height: 100vh;
@@ -51,6 +71,10 @@ h5.owner{
     padding-top: 25vh;
     padding-right: 70px;
     padding-left: 70px;
+  background: -webkit-linear-gradient(bottom,rgba(0,0,0,0),rgba(0,0,0,1)); /*Safari 5.1-6*/
+  background: -o-linear-gradient(bottom,rgba(0,0,0,0),rgba(0,0,0,1)); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(bottom,rgba(0,0,0,0),rgba(0,0,0,1)); /*Fx 3.6-15*/
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)); /*Standard*/
  }
 
 .teamLogo{
@@ -77,7 +101,7 @@ h5.owner{
   color: #0058a9;
  }
 .clippers.background { 
-  background-color: grey;
+  background-color: black;
 }
 
 /*Hornets STYLES*/
@@ -109,7 +133,7 @@ h5.owner{
   color: #FF671B;
  }
 .nicks.background { 
-  background-color: grey;
+  background-color: #006bb6;
 }
 
 /*grizzlies STYLES*/
@@ -129,12 +153,20 @@ h5.owner{
 }
 
 .vs{
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
   position: absolute;
-  top: 50vh;
+  top: 45vh;
+  display: block;
+  margin: 0 auto;
   background-color: black;
   z-index: 99;
+  text-align: center;
+  left: 50%;
+  margin-left: -50px;
 }
 
 .font {font-family: 'Oswald', sans-serif}
